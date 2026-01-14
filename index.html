@@ -1,0 +1,231 @@
+<!DOCTYPE html> 
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>รายการสั่งอาหาร ร้านหมู(โอ)เด้ง</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{font-family:'Sarabun',sans-serif;box-sizing:border-box}
+body{background:linear-gradient(135deg,#ffd6e8,#e6d9ff);padding:20px}
+h1{text-align:center;color:#ad1457}
+
+.box{
+  max-width:520px;
+  margin:auto;
+  background:#fff;
+  padding:22px;
+  border-radius:22px;
+  box-shadow:0 6px 15px rgba(0,0,0,.15)
+}
+
+.row{display:flex;align-items:flex-start;gap:8px;margin-bottom:12px}
+.row label{width:100px;font-weight:600}
+.row input,.row textarea{flex:1;padding:10px;border-radius:12px;border:1px solid #ccc}
+
+.pay-box label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:500;
+}
+
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{padding:8px;text-align:center;border-bottom:1px solid #eee}
+th{background:#fce4ec}
+input[type=number]{width:70px}
+
+#total{
+  margin-top:12px;
+  font-size:18px;
+  font-weight:700;
+  color:#d81b60;
+  text-align:right
+}
+
+button{
+  width:100%;
+  margin-top:18px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,#ff5fa2,#b388ff);
+  color:white;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer
+}
+</style>
+</head>
+
+<body>
+
+<h1>🐽รายการสั่งอาหาร<br>ร้านหมู(โอ)เด้ง</h1>
+
+<div class="box">
+
+  <div class="row">
+    <label>ชื่อลูกค้า</label>
+    <input id="name" placeholder="กรอกชื่อ">
+  </div>
+
+  <div class="row">
+    <label>น้ำซุป</label>
+    <div>
+      <label><input type="radio" name="soup" value="น้ำซุปใส" checked> น้ำซุปใส</label><br>
+      <label><input type="radio" name="soup" value="ซุปหมาล่า"> ซุปหมาล่า</label><br>
+      <label><input type="radio" name="soup" value="ซุปมิโซะ"> ซุปมิโซะ</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>รายละเอียด</label>
+    <textarea id="note" rows="2" placeholder="ไม่ใส่ผัก / เผ็ดน้อย ฯลฯ"></textarea>
+  </div>
+
+  <!-- 🔹 ช่องทางชำระเงิน -->
+  <div class="row">
+    <label>ชำระเงิน</label>
+    <div class="pay-box">
+      <label><input type="radio" name="pay" value="cash" checked> เงินสด</label>
+      <label><input type="radio" name="pay" value="transfer"> โอนเงิน</label>
+    </div>
+  </div>
+
+  <!-- 🔹 QR CODE -->
+  <div id="qrBox" style="display:none;text-align:center;margin-bottom:10px">
+    <img src="qr.png" style="width:220px;border-radius:16px">
+    <p style="color:#d81b60;font-weight:600">
+      กรุณาโอนตามยอดที่แสดง
+    </p>
+  </div>
+
+  <table id="menu">
+
+    <tr>
+      <th>เมนู</th>
+      <th>ราคา</th>
+      <th>จำนวน</th>
+    </tr>
+    <tr>
+      <td>หมู</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+    <tr>
+      <td>ไก่</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+    <tr>
+      <td>ลูกชิ้น</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+    <tr>
+      <td>เนื้อหมูสไลด์</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+    <tr>
+      <td>ไส้กรอก</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+    <tr>
+      <td>บุกเส้น</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+    <tr>
+      <td>ฟองเต้าหู้</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+      <td>ลูกชิ้นทูโทน</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+      <td>เต้าหู้ชีส</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+      <td>แป้งต๊อกบกกี</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+      <td>ผัก</td>
+      <td>10</td>
+      <td><input type="number" min="0" value="0" oninput="calc()"></td>
+    </tr>
+  </table>
+  </table>
+
+  <p id="total">ราคารวม: 0 บาท</p>
+  <button onclick="order()">ยืนยันการสั่งซื้อ</button>
+
+</div>
+
+<script>
+function calc(){
+  let sum=0;
+  document.querySelectorAll("#menu tr").forEach((r,i)=>{
+    if(i>0){
+      let p=+r.children[1].innerText;
+      let q=+r.children[2].children[0].value||0;
+      sum+=p*q;
+    }
+  });
+  document.getElementById("total").innerText="ราคารวม: "+sum+" บาท";
+}
+
+/* แสดง / ซ่อน QR */
+document.querySelectorAll('input[name="pay"]').forEach(el=>{
+  el.addEventListener("change",()=>{
+    document.getElementById("qrBox").style.display =
+      el.value==="transfer" && el.checked ? "block":"none";
+  });
+});
+
+function order(){
+  let name=document.getElementById("name").value.trim();
+  if(!name){alert("กรุณากรอกชื่อ");return;}
+
+  let soup=document.querySelector('input[name="soup"]:checked').value;
+  let note=document.getElementById("note").value;
+  let pay=document.querySelector('input[name="pay"]:checked').value;
+
+  let items=[],sum=0;
+  document.querySelectorAll("#menu tr").forEach((r,i)=>{
+    if(i>0){
+      let q=+r.children[2].children[0].value||0;
+      if(q>0){
+        let p=+r.children[1].innerText;
+        items.push(r.children[0].innerText+" "+q+" ไม้");
+        sum+=p*q;
+      }
+    }
+  });
+
+  if(items.length===0){alert("กรุณาเลือกเมนู");return;}
+
+  let orders=JSON.parse(localStorage.getItem("orders"))||[];
+  orders.push({
+    time:new Date().toLocaleTimeString(),
+    name,
+    soup,
+    note,
+    items:items.join(", "),
+    total:sum,
+    pay,
+    paid: pay==="cash",
+    done:false
+  });
+
+  localStorage.setItem("orders",JSON.stringify(orders));
+  alert("สั่งซื้อสำเร็จ 🎉");
+  location.reload();
+}
+</script>
+
+</body>
+</html>
