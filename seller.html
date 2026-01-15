@@ -7,52 +7,155 @@
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{font-family:'Sarabun',sans-serif !important;box-sizing:border-box}
-body{background:linear-gradient(135deg,#e6d9ff,#ffd6e8);padding:20px}
+*{
+  font-family:'Sarabun',sans-serif;
+  box-sizing:border-box;
+}
 
+body{
+  background:linear-gradient(135deg,#e6d9ff,#ffd6e8);
+  padding:20px;
+}
+
+/* ===== ยอดเงิน ===== */
 .total-box{
-  max-width:900px;margin:0 auto 20px;
+  max-width:900px;
+  margin:0 auto 20px;
   background:linear-gradient(135deg,#7b1fa2,#ab47bc);
-  color:white;text-align:center;
-  padding:20px;border-radius:26px;
-  box-shadow:0 8px 20px rgba(0,0,0,.25)
+  color:white;
+  text-align:center;
+  padding:22px;
+  border-radius:26px;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
 }
-.total-box h2{margin:4px 0;font-size:22px}
-.total-box .big{font-size:32px;font-weight:700}
 
+.total-box h2{
+  margin:0;
+  font-size:22px;
+}
+
+.total-box .amount{
+  font-size:40px;
+  font-weight:700;
+  margin:10px 0;
+}
+
+.total-box .sub{
+  font-size:18px;
+  line-height:1.6;
+}
+
+/* ===== กล่อง ===== */
 .box{
-  max-width:900px;margin:auto;background:#fff;
-  padding:22px;border-radius:22px;
+  max-width:900px;
+  margin:auto;
+  background:#fff;
+  padding:22px;
+  border-radius:22px;
   box-shadow:0 6px 15px rgba(0,0,0,.15);
-  margin-bottom:25px
+  margin-bottom:25px;
 }
 
-h1{text-align:center;color:#6a1b9a}
+h1{
+  text-align:center;
+  color:#6a1b9a;
+  margin-bottom:18px;
+}
 
-.login-row{display:flex;gap:8px}
-.login-row label{width:95px;font-weight:600}
-.password-box{flex:1;position:relative}
+/* ===== login ===== */
+.login-row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.login-row label{
+  width:95px;
+  font-weight:600;
+}
+
+.password-box{
+  flex:1;
+  position:relative;
+}
+
 .password-box input{
-  width:100%;padding:10px 40px 10px 12px;
-  border-radius:12px;border:1px solid #ccc
+  width:100%;
+  padding:10px 40px 10px 12px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  font-size:16px;
 }
-.toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer}
+
+.toggle{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+}
 
 button{
-  width:100%;margin-top:16px;padding:13px;
-  border:none;border-radius:30px;
+  width:100%;
+  margin-top:16px;
+  padding:13px;
+  border:none;
+  border-radius:30px;
   background:linear-gradient(135deg,#7b1fa2,#ab47bc);
-  color:white;font-size:17px;font-weight:600;cursor:pointer
+  color:white;
+  font-size:17px;
+  font-weight:600;
+  cursor:pointer;
 }
 
-table{width:100%;border-collapse:collapse;margin-top:10px}
-th,td{padding:10px;text-align:center;border-bottom:1px solid #eee}
-th{background:#f3e5f5}
-.queue{font-size:22px;font-weight:700;color:#6a1b9a}
-.done{text-decoration:line-through;color:#999}
-.delete{background:#e53935;border:none;color:white;padding:6px 10px;border-radius:8px;cursor:pointer}
+/* ===== ตาราง ===== */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th,td{
+  padding:10px;
+  text-align:center;
+  border-bottom:1px solid #eee;
+}
+
+th{
+  background:#f3e5f5;
+}
+
+.queue{
+  font-size:24px;
+  font-weight:700;
+  color:#6a1b9a;
+}
+
+.detail{
+  text-align:left;
+  font-size:14px;
+  color:#555;
+}
+
+.done{
+  text-decoration:line-through;
+  color:#999;
+}
+
+.delete{
+  background:#e53935;
+  border:none;
+  color:white;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
 
 #orders{display:none}
+
+@media(max-width:600px){
+  .queue{font-size:18px}
+}
 </style>
 </head>
 
@@ -60,45 +163,51 @@ th{background:#f3e5f5}
 
 <!-- 🔝 ยอดเงิน -->
 <div class="total-box" id="totalBox" style="display:none">
-  <h2>💵 เงินสด: <span id="cashTotal" class="big">0</span> บาท</h2>
-  <h2>📲 เงินโอน: <span id="transferTotal" class="big">0</span> บาท</h2>
-  <h2>💰 เงินรวมทั้งหมด: <span id="grandTotal" class="big">0</span> บาท</h2>
+  <h2>ยอดขายรวมทั้งหมด</h2>
+  <div class="amount" id="totalAmount">0 บาท</div>
+  <div class="sub">
+    💵 เงินสด: <span id="cashTotal">0</span> บาท<br>
+    🏦 เงินโอน: <span id="transferTotal">0</span> บาท
+  </div>
 </div>
 
 <h1>📋 ผู้ขาย ร้านหมู(โอ)เด้ง</h1>
 
+<!-- 🔐 Login -->
 <div class="box">
   <div class="login-row">
     <label>รหัสผู้ขาย</label>
     <div class="password-box">
-      <input type="password" id="pass">
+      <input type="password" id="pass" placeholder="กรอกรหัสผู้ขาย">
       <span class="toggle" onclick="togglePass()">👁️</span>
     </div>
   </div>
   <button onclick="login()">เข้าสู่ระบบ</button>
 </div>
 
+<!-- 📦 Orders -->
 <div class="box" id="orders">
-<table>
-<tr>
-  <th>คิว</th>
-  <th>เวลา</th>
-  <th>ชื่อ</th>
-  <th>รายการ</th>
-  <th>ชำระ</th>
-  <th>ราคา</th>
-  <th>ทำเสร็จ</th>
-  <th>จ่ายเงิน</th>
-  <th>ลบ</th>
-</tr>
-<tbody id="table"></tbody>
-</table>
+  <table>
+    <tr>
+      <th>คิว</th>
+      <th>เวลา</th>
+      <th>ชื่อ</th>
+      <th>รายการ</th>
+      <th>รายละเอียด</th>
+      <th>ราคา</th>
+      <th>จ่ายแล้ว</th>
+      <th>เสร็จ</th>
+      <th>ลบ</th>
+    </tr>
+    <tbody id="table"></tbody>
+  </table>
 </div>
 
 <script>
 function login(){
   if(document.getElementById("pass").value !== "dengshop"){
-    alert("รหัสผู้ขายไม่ถูกต้อง"); return;
+    alert("รหัสผู้ขายไม่ถูกต้อง");
+    return;
   }
   document.getElementById("orders").style.display="block";
   document.getElementById("totalBox").style.display="block";
@@ -109,15 +218,14 @@ function loadOrders(){
   const data = JSON.parse(localStorage.getItem("orders")) || [];
   const table = document.getElementById("table");
 
-  let cash = 0;
-  let transfer = 0;
-
+  let total=0, cash=0, transfer=0;
   table.innerHTML="";
 
   data.forEach((o,i)=>{
     if(o.paid){
-      if(o.pay==="cash") cash += Number(o.total);
-      if(o.pay==="transfer") transfer += Number(o.total);
+      total += o.total;
+      if(o.pay==="cash") cash+=o.total;
+      if(o.pay==="transfer") transfer+=o.total;
     }
 
     table.innerHTML += `
@@ -126,36 +234,40 @@ function loadOrders(){
       <td>${o.time}</td>
       <td>${o.name}</td>
       <td>${o.items}</td>
-      <td>${o.pay==="cash"?"เงินสด":"โอน"}</td>
+      <td class="detail">
+        น้ำซุป: ${o.soup}<br>
+        หมายเหตุ: ${o.note || '-'}<br>
+        ชำระเงิน: ${o.pay==="transfer"?"โอนเงิน":"เงินสด"}
+      </td>
       <td>${o.total} บาท</td>
-      <td><input type="checkbox" ${o.done?'checked':''} onclick="toggleDone(${i})"></td>
       <td><input type="checkbox" ${o.paid?'checked':''} onclick="togglePaid(${i})"></td>
+      <td><input type="checkbox" ${o.done?'checked':''} onclick="toggleDone(${i})"></td>
       <td><button class="delete" onclick="deleteOrder(${i})">🗑️</button></td>
     </tr>`;
   });
 
+  document.getElementById("totalAmount").innerText = total+" บาท";
   document.getElementById("cashTotal").innerText = cash;
   document.getElementById("transferTotal").innerText = transfer;
-  document.getElementById("grandTotal").innerText = cash + transfer;
-}
-
-function toggleDone(i){
-  let d = JSON.parse(localStorage.getItem("orders"));
-  d[i].done = !d[i].done;
-  localStorage.setItem("orders",JSON.stringify(d));
-  loadOrders();
 }
 
 function togglePaid(i){
-  let d = JSON.parse(localStorage.getItem("orders"));
+  const d = JSON.parse(localStorage.getItem("orders"));
   d[i].paid = !d[i].paid;
   localStorage.setItem("orders",JSON.stringify(d));
   loadOrders();
 }
 
+function toggleDone(i){
+  const d = JSON.parse(localStorage.getItem("orders"));
+  d[i].done = !d[i].done;
+  localStorage.setItem("orders",JSON.stringify(d));
+  loadOrders();
+}
+
 function deleteOrder(i){
-  if(!confirm("ต้องการลบออเดอร์นี้หรือไม่?")) return;
-  let d = JSON.parse(localStorage.getItem("orders"));
+  if(!confirm("ลบออเดอร์นี้หรือไม่?")) return;
+  const d = JSON.parse(localStorage.getItem("orders"));
   d.splice(i,1);
   localStorage.setItem("orders",JSON.stringify(d));
   loadOrders();
